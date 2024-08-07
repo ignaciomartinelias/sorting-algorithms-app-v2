@@ -72,6 +72,7 @@ export const Sidebar = () => {
         <h3 className="font-semibold">Speed</h3>
         <Slider
           defaultValue={[200]}
+          min={5}
           max={2000}
           step={1}
           onValueChange={handleSpeedChange}

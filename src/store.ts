@@ -3,7 +3,7 @@ import { createRef } from "react";
 
 type Algorithm = "selection" | "bubble" | "quick" | "merge";
 
-interface State {
+export interface StoreState {
   speedRef: React.MutableRefObject<number>;
   isPlaying: boolean;
   activeAlgorithm: Algorithm;
@@ -21,7 +21,7 @@ interface State {
   ) => void;
   setTempItems: (items: number[] | ((prevItems: number[]) => number[])) => void;
   setDoneItems: (items: number[] | ((prevItems: number[]) => number[])) => void;
-  reset: () => void;
+  createNewArray: () => void;
 }
 
 const generateUniqueRandomItems = (
@@ -43,7 +43,7 @@ const MAX = 50;
 let speedRef = createRef<number>() as React.MutableRefObject<number>; // eslint-disable-line prefer-const
 speedRef.current = 200;
 
-export const useStore = create<State>((set) => ({
+export const useStore = create<StoreState>((set) => ({
   speedRef,
   isPlaying: false,
   activeAlgorithm: "selection",
@@ -78,11 +78,11 @@ export const useStore = create<State>((set) => ({
           ? doneItems(state.doneItems)
           : doneItems,
     })),
-  reset: () =>
-    set({
-      items: generateUniqueRandomItems(30, MIN, MAX),
+  createNewArray: () =>
+    set((state) => ({
+      items: generateUniqueRandomItems(state.size, MIN, MAX),
       activeItems: [],
       tempItems: [],
       doneItems: [],
-    }),
+    })),
 }));

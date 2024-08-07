@@ -5,7 +5,8 @@ import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
 import { useStore } from "@/store";
 
 export const Controls = () => {
-  const { isPlaying, activeAlgorithm, reset, setIsPlaying } = useStore();
+  const { isPlaying, activeAlgorithm, createNewArray, setIsPlaying } =
+    useStore();
   const { selectionSort, bubbleSort, quickSort } = useSortingAlgorithms();
 
   const handlePlayAnimation = async () => {
@@ -34,8 +35,8 @@ export const Controls = () => {
         </Button>
       )}
 
-      <Button variant="outline" onClick={reset}>
-        <UpdateIcon className="h-4 w-4 mr-2" /> Reset Animation
+      <Button variant="outline" onClick={createNewArray} disabled={isPlaying}>
+        <UpdateIcon className="h-4 w-4 mr-2" /> Create new array
       </Button>
     </div>
   );

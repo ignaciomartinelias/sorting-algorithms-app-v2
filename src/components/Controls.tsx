@@ -1,4 +1,4 @@
-import { PlayIcon, StopIcon, UpdateIcon } from "@radix-ui/react-icons";
+import { PauseIcon, PlayIcon, UpdateIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 
 import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
@@ -25,7 +25,7 @@ export const Controls = () => {
     <div className="flex gap-8">
       {isPlaying ? (
         <Button variant={"outline"} onClick={handleStopAnimation}>
-          <StopIcon className="h-4 w-4 mr-2" />
+          <PauseIcon className="h-4 w-4 mr-2" />
           Stop Animation
         </Button>
       ) : (

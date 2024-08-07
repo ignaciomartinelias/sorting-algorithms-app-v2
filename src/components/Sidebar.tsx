@@ -15,11 +15,19 @@ const sizesMap = {
 const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
 
 export const Sidebar = () => {
-  const { activeAlgorithm, setActiveAlgorithm, isPlaying, setSize, speedRef } =
-    useStore();
+  const {
+    activeAlgorithm,
+    setActiveAlgorithm,
+    isPlaying,
+    setSize,
+    speedRef,
+    size: activeSize,
+  } = useStore();
 
   const handleSizeChange = (size: number) => {
-    setSize(size);
+    if (size !== activeSize) {
+      setSize(size);
+    }
   };
 
   const handleSpeedChange = (value: number[]) => {
@@ -44,7 +52,7 @@ export const Sidebar = () => {
                   }
                 )}
                 onClick={() => setActiveAlgorithm(algorithm)}
-                disabled={isPlaying && activeAlgorithm !== algorithm}
+                disabled={isPlaying}
               >
                 {algorithm} Sort
               </Button>
@@ -59,8 +67,15 @@ export const Sidebar = () => {
               <Button
                 key={size}
                 variant="outline"
-                className="flex items-center justify-center w-full gap-2 px-2"
+                className={cn(
+                  "flex items-center justify-center w-full gap-2 px-2",
+                  {
+                    "bg-background text-foreground hover:bg-background/90 hover:text-white":
+                      Number(size) === activeSize,
+                  }
+                )}
                 onClick={() => handleSizeChange(Number(size))}
+                disabled={isPlaying}
               >
                 {label}
               </Button>

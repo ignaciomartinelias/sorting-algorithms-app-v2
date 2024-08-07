@@ -1,37 +1,26 @@
 import { cn } from "@/lib/utils";
+import { useStore } from "@/store";
 import { Reorder } from "framer-motion";
 
-type Props = {
-  numbers: number[];
-  setNumbers: (numbers: number[]) => void;
-  activeNumbers: number[];
-  tempNumbers: number[];
-  doneNumbers: number[];
-};
+export const Animation = () => {
+  const { items, setItems, activeItems, doneItems, tempItems } = useStore();
 
-export const Animation = ({
-  numbers,
-  setNumbers,
-  activeNumbers,
-  tempNumbers,
-  doneNumbers,
-}: Props) => {
   return (
     <Reorder.Group
       axis="x"
-      values={numbers}
-      onReorder={setNumbers}
+      values={items}
+      onReorder={setItems}
       className="max-w-4xl flex items-baseline gap-4 min-h-56"
     >
-      {numbers.map((number) => (
+      {items.map((number) => (
         <Reorder.Item
           drag={false}
           key={number}
           value={number}
           className={cn("rounded-sm grid place-items-center  bg-foreground", {
-            "bg-secondary": activeNumbers.includes(number),
-            "bg-primary": doneNumbers.includes(number),
-            "bg-tertiary": tempNumbers.includes(number),
+            "bg-secondary": activeItems.includes(number),
+            "bg-primary": doneItems.includes(number),
+            "bg-tertiary": tempItems.includes(number),
           })}
           style={{ width: 80, height: number * 4 }}
           variants={{
@@ -42,9 +31,9 @@ export const Animation = ({
             },
           }}
           animate={
-            doneNumbers.includes(number)
+            doneItems.includes(number)
               ? "done"
-              : activeNumbers.includes(number) && !tempNumbers.includes(number)
+              : activeItems.includes(number) && !tempItems.includes(number)
               ? "active"
               : "inactive"
           }

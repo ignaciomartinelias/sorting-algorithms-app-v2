@@ -1,19 +1,25 @@
 import { PlayIcon, StopIcon, UpdateIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 
-type Props = {
-  isPlaying: boolean;
-  handleResetAnimation: VoidFunction;
-  handlePlayAnimation: VoidFunction;
-  handleStopAnimation: VoidFunction;
-};
+import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
+import { useStore } from "@/store";
 
-export const Controls = ({
-  isPlaying,
-  handleResetAnimation,
-  handlePlayAnimation,
-  handleStopAnimation,
-}: Props) => {
+export const Controls = () => {
+  const { isPlaying, activeAlgorithm, reset, setIsPlaying } = useStore();
+  const { selectionSort, bubbleSort, quickSort } = useSortingAlgorithms();
+
+  const handlePlayAnimation = async () => {
+    setIsPlaying(true);
+    if (activeAlgorithm === "selection") await selectionSort();
+    else if (activeAlgorithm === "bubble") await bubbleSort();
+    else if (activeAlgorithm === "quick") await quickSort();
+    setIsPlaying(false);
+  };
+
+  const handleStopAnimation = () => {
+    setIsPlaying(false);
+  };
+
   return (
     <div className="flex gap-8">
       {isPlaying ? (
@@ -28,7 +34,7 @@ export const Controls = ({
         </Button>
       )}
 
-      <Button variant="outline" onClick={handleResetAnimation}>
+      <Button variant="outline" onClick={reset}>
         <UpdateIcon className="h-4 w-4 mr-2" /> Reset Animation
       </Button>
     </div>

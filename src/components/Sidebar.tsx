@@ -3,15 +3,7 @@ import { Button } from "./ui/button";
 import { Slider } from "./ui/slider";
 import type { Algorithm } from "@/types";
 import { cn } from "@/lib/utils";
-
-type Props = {
-  algorithms: Algorithm[];
-  activeAlgorithm: Algorithm | null;
-  setActiveAlgorithm: (algorithm: Algorithm) => void;
-  isPlaying: boolean;
-  handleSizeChange: (size: number) => void;
-  handleSpeedChange: (value: number[]) => void;
-};
+import { useStore } from "@/store";
 
 const sizesMap = {
   10: "Small",
@@ -20,14 +12,20 @@ const sizesMap = {
   40: "XL",
 };
 
-export const Sidebar = ({
-  algorithms,
-  activeAlgorithm,
-  setActiveAlgorithm,
-  isPlaying,
-  handleSizeChange,
-  handleSpeedChange,
-}: Props) => {
+const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
+
+export const Sidebar = () => {
+  const { activeAlgorithm, setActiveAlgorithm, isPlaying, setSize, speedRef } =
+    useStore();
+
+  const handleSizeChange = (size: number) => {
+    setSize(size);
+  };
+
+  const handleSpeedChange = (value: number[]) => {
+    speedRef.current = value[0];
+  };
+
   return (
     <aside className="border-r w-64 p-6 flex flex-col gap-6">
       <div className="grid gap-4">

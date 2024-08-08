@@ -5,16 +5,21 @@ const swap = (arr: number[], i: number, j: number) => {
   [arr[i], arr[j]] = [arr[j], arr[i]];
 };
 
-const bubble = async (
-  arr: number[],
-  setItems: StoreState["setItems"],
-  setActiveItems: StoreState["setActiveItems"],
-  setDoneItems: StoreState["setDoneItems"],
-  speedRef: StoreState["speedRef"]
-) => {
+const bubble = async ({
+  arr,
+  setItems,
+  setActiveItems,
+  setDoneItems,
+  speedRef,
+  abortRef,
+}: Pick<
+  StoreState,
+  "abortRef" | "speedRef" | "setItems" | "setActiveItems" | "setDoneItems"
+> & { arr: number[] }) => {
   const len = arr.length;
   for (let i = 0; i < len; i++) {
     for (let j = 0; j < len - 1 - i; j++) {
+      if (abortRef.current) return; // Check if animation should stop
       setActiveItems([arr[j], arr[j + 1]]);
       await sleep(speedRef.current);
 
@@ -28,12 +33,25 @@ const bubble = async (
 };
 
 export const useBubbleSort = () => {
-  const { items, setItems, setActiveItems, setDoneItems, speedRef } =
+  const { items, setItems, setActiveItems, setDoneItems, speedRef, abortRef } =
     useStore();
 
   const sort = async () => {
     const result = [...items];
-    await bubble(result, setItems, setActiveItems, setDoneItems, speedRef);
+    await bubble({
+      arr: result,
+      setItems,
+      setActiveItems,
+      setDoneItems,
+      speedRef,
+      abortRef,
+    });
+    if (abortRef.current) {
+      setActiveItems([]); // Clear active items
+      setDoneItems([]); // Clear done items
+      abortRef.current = false; // Reset abortRef
+      return;
+    }
     setDoneItems([...result]);
     setActiveItems([]);
   };

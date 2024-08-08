@@ -10,7 +10,7 @@ export const AlgorithmVisualizer = () => {
       axis="x"
       values={items}
       onReorder={setItems}
-      className="max-w-4xl flex items-baseline gap-4 min-h-56"
+      className="max-w-4xl flex items-baseline gap-4 min-h-64"
     >
       {items.map((item) => (
         <Item

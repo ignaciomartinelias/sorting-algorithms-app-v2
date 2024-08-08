@@ -5,6 +5,7 @@ type Algorithm = "selection" | "bubble" | "quick" | "merge";
 
 export interface StoreState {
   speedRef: React.MutableRefObject<number>;
+  abortRef: React.MutableRefObject<boolean>;
   isPlaying: boolean;
   activeAlgorithm: Algorithm;
   size: number;
@@ -43,8 +44,12 @@ const MAX = 50;
 let speedRef = createRef<number>() as React.MutableRefObject<number>; // eslint-disable-line prefer-const
 speedRef.current = 200;
 
+let abortRef = createRef<boolean>() as React.MutableRefObject<boolean>; // eslint-disable-line prefer-const
+abortRef.current = false;
+
 export const useStore = create<StoreState>((set) => ({
   speedRef,
+  abortRef,
   isPlaying: false,
   activeAlgorithm: "selection",
   size: 30,

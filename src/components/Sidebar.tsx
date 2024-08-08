@@ -31,7 +31,7 @@ export const Sidebar = () => {
   };
 
   const handleSpeedChange = (value: number[]) => {
-    speedRef.current = value[0];
+    speedRef.current = 2010 - value[0];
   };
 
   return (
@@ -86,7 +86,7 @@ export const Sidebar = () => {
       <div className="grid gap-2">
         <h3 className="font-semibold">Speed</h3>
         <Slider
-          defaultValue={[200]}
+          defaultValue={[1800]}
           min={5}
           max={2000}
           step={1}

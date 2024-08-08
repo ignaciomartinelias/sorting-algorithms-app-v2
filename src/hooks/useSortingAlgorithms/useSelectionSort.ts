@@ -2,7 +2,7 @@ import { useStore } from "@/store";
 import { sleep } from "./utils";
 
 export const useSelectionSort = () => {
-  const { items, setItems, setActiveItems, setDoneItems, speedRef } =
+  const { items, setItems, setActiveItems, setDoneItems, speedRef, abortRef } =
     useStore();
 
   const sort = async () => {
@@ -14,6 +14,7 @@ export const useSelectionSort = () => {
     ): Promise<number> => {
       let minIndex = start;
       for (let i = start + 1; i < arr.length; i++) {
+        if (abortRef.current) return -1; // Check if animation should stop
         setActiveItems([arr[i], arr[minIndex]]);
         await sleep(speedRef.current);
         if (arr[i] < arr[minIndex]) {
@@ -25,6 +26,12 @@ export const useSelectionSort = () => {
 
     for (let i = 0; i < result.length - 1; i++) {
       const minIndex = await findMinIndex(result, i);
+      if (minIndex === -1) {
+        setActiveItems([]); // Clear active items
+        setDoneItems([]); // Clear done items
+        abortRef.current = false; // Reset abortRef
+        return;
+      } // Exit if animation should stop
       if (minIndex !== i) {
         [result[i], result[minIndex]] = [result[minIndex], result[i]];
       }

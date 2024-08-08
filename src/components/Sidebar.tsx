@@ -22,10 +22,12 @@ export const Sidebar = () => {
     setSize,
     speedRef,
     size: activeSize,
+    setDoneItems,
   } = useStore();
 
   const handleSizeChange = (size: number) => {
     if (size !== activeSize) {
+      setDoneItems([]);
       setSize(size);
     }
   };

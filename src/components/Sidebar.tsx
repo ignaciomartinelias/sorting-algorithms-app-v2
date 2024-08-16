@@ -14,6 +14,8 @@ const sizesMap = {
 
 const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
 
+const displayModes = ["bars", "numbers"] as const;
+
 export const Sidebar = () => {
   const {
     activeAlgorithm,
@@ -23,6 +25,8 @@ export const Sidebar = () => {
     speedRef,
     size: activeSize,
     setDoneItems,
+    displayMode,
+    setDisplayMode,
   } = useStore();
 
   const handleSizeChange = (size: number) => {
@@ -39,7 +43,7 @@ export const Sidebar = () => {
   return (
     <aside className="border-r w-64 p-6 flex flex-col gap-6">
       <div className="grid gap-4">
-        <div className="grid gap-2">
+        <div className="grid gap-4">
           <h3 className="font-semibold">Algorithms</h3>
           <div className="grid gap-2">
             {algorithms.map((algorithm) => (
@@ -61,8 +65,8 @@ export const Sidebar = () => {
             ))}
           </div>
         </div>
-        <Separator className="my-4" />
-        <div className="grid gap-2">
+        <Separator className="my-2" />
+        <div className="grid gap-4">
           <h3 className="font-semibold">Visualizer Settings</h3>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(sizesMap).map(([size, label]) => (
@@ -77,7 +81,9 @@ export const Sidebar = () => {
                   }
                 )}
                 onClick={() => handleSizeChange(Number(size))}
-                disabled={isPlaying}
+                disabled={
+                  isPlaying || (displayMode === "numbers" && Number(size) > 20)
+                }
               >
                 {label}
               </Button>
@@ -85,7 +91,8 @@ export const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-2">
+      <Separator className="my-2" />
+      <div className="grid gap-4">
         <h3 className="font-semibold">Speed</h3>
         <Slider
           defaultValue={[1800]}
@@ -94,6 +101,29 @@ export const Sidebar = () => {
           step={1}
           onValueChange={handleSpeedChange}
         />
+      </div>
+      <Separator className="my-2" />
+      <div className="grid gap-4">
+        <h3 className="font-semibold">Display Mode</h3>
+        <div className="grid grid-cols-2 gap-2">
+          {displayModes.map((mode) => (
+            <Button
+              key={mode}
+              variant="outline"
+              className={cn(
+                "flex items-center justify-center w-full gap-2 px-2 capitalize",
+                {
+                  "bg-background text-foreground hover:bg-background/90 hover:text-white":
+                    mode === displayMode,
+                }
+              )}
+              onClick={() => setDisplayMode(mode)}
+              disabled={isPlaying}
+            >
+              {mode}
+            </Button>
+          ))}
+        </div>
       </div>
     </aside>
   );

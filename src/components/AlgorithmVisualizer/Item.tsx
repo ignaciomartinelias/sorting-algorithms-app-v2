@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
-  const { speedRef } = useStore();
+  const { speedRef, displayMode } = useStore();
 
   // Normalize speed to a suitable animation duration (e.g., map 20-2000 to 0.05-2 seconds)
   const normalizedSpeed = 0.05 + ((2000 - speedRef.current) / 1980) * 1.95;
@@ -20,14 +20,22 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
   return (
     <Reorder.Item
       drag={false}
-      key={item}
       value={item}
       className={cn("rounded-sm grid place-items-center bg-foreground", {
         "bg-secondary": isActive,
         "bg-primary": isDone,
         "bg-tertiary": isTemp,
       })}
-      style={{ width: 80, height: item * 4 }}
+      style={
+        displayMode === "bars"
+          ? { width: 80, height: item * 4 }
+          : {
+              width: 40,
+              height: 40,
+              display: "grid",
+              placeItems: "center",
+            }
+      }
       variants={{
         active: { y: -200 },
         inactive: { y: 0 },
@@ -44,6 +52,16 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
         duration: animationDuration,
       }}
       animate={isDone ? "done" : isActive && !isTemp ? "active" : "inactive"}
-    />
+    >
+      {displayMode === "numbers" && (
+        <span
+          className={cn("text-xs text-background font-semibold", {
+            "text-white": isDone || isActive,
+          })}
+        >
+          {item}
+        </span>
+      )}
+    </Reorder.Item>
   );
 });

@@ -4,15 +4,18 @@ import { createRef } from "react";
 type Algorithm = "selection" | "bubble" | "quick" | "merge";
 
 export interface StoreState {
+  arrayId: number;
   speedRef: React.MutableRefObject<number>;
   abortRef: React.MutableRefObject<boolean>;
   isPlaying: boolean;
   activeAlgorithm: Algorithm;
   size: number;
+  displayMode: "bars" | "numbers";
   items: number[];
   activeItems: number[];
   tempItems: number[];
   doneItems: number[];
+  setDisplayMode: (displayMode: "bars" | "numbers") => void;
   setIsPlaying: (isPlaying: boolean) => void;
   setActiveAlgorithm: (algorithm: Algorithm) => void;
   setSize: (size: number) => void;
@@ -48,19 +51,36 @@ let abortRef = createRef<boolean>() as React.MutableRefObject<boolean>; // eslin
 abortRef.current = false;
 
 export const useStore = create<StoreState>((set) => ({
+  arrayId: 0,
   speedRef,
   abortRef,
   isPlaying: false,
   activeAlgorithm: "selection",
+  displayMode: "bars",
   size: 30,
   items: generateUniqueRandomItems(30, MIN, MAX),
   activeItems: [],
   tempItems: [],
   doneItems: [],
   setIsPlaying: (isPlaying) => set({ isPlaying }),
+  setDisplayMode: (displayMode) =>
+    set((state) => {
+      const newSize =
+        displayMode === "numbers" && state.size > 20 ? 20 : state.size;
+      return {
+        displayMode,
+        size: newSize,
+        items: generateUniqueRandomItems(newSize, MIN, MAX),
+        arrayId: state.arrayId + 1,
+      };
+    }),
   setActiveAlgorithm: (algorithm) => set({ activeAlgorithm: algorithm }),
   setSize: (size) =>
-    set({ size, items: generateUniqueRandomItems(size, MIN, MAX) }),
+    set((state) => ({
+      size,
+      items: generateUniqueRandomItems(size, MIN, MAX),
+      arrayId: state.arrayId + 1,
+    })),
   setItems: (items) =>
     set((state) => ({
       items: typeof items === "function" ? items(state.items) : items,
@@ -86,6 +106,7 @@ export const useStore = create<StoreState>((set) => ({
   createNewArray: () =>
     set((state) => ({
       items: generateUniqueRandomItems(state.size, MIN, MAX),
+      arrayId: state.arrayId + 1,
       activeItems: [],
       tempItems: [],
       doneItems: [],

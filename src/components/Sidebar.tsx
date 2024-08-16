@@ -90,39 +90,40 @@ export const Sidebar = () => {
             ))}
           </div>
         </div>
-      </div>
-      <Separator className="my-2" />
-      <div className="grid gap-4">
-        <h3 className="font-semibold">Speed</h3>
-        <Slider
-          defaultValue={[1800]}
-          min={5}
-          max={2000}
-          step={1}
-          onValueChange={handleSpeedChange}
-        />
-      </div>
-      <Separator className="my-2" />
-      <div className="grid gap-4">
-        <h3 className="font-semibold">Display Mode</h3>
-        <div className="grid grid-cols-2 gap-2">
-          {displayModes.map((mode) => (
-            <Button
-              key={mode}
-              variant="outline"
-              className={cn(
-                "flex items-center justify-center w-full gap-2 px-2 capitalize",
-                {
-                  "bg-background text-foreground hover:bg-background/90 hover:text-white":
-                    mode === displayMode,
-                }
-              )}
-              onClick={() => setDisplayMode(mode)}
-              disabled={isPlaying}
-            >
-              {mode}
-            </Button>
-          ))}
+        <Separator className="my-2" />
+
+        <div className="grid gap-4">
+          <h3 className="font-semibold">Display Mode</h3>
+          <div className="grid grid-cols-2 gap-2">
+            {displayModes.map((mode) => (
+              <Button
+                key={mode}
+                variant="outline"
+                className={cn(
+                  "flex items-center justify-center w-full gap-2 px-2 capitalize",
+                  {
+                    "bg-background text-foreground hover:bg-background/90 hover:text-white":
+                      mode === displayMode,
+                  }
+                )}
+                onClick={() => setDisplayMode(mode)}
+                disabled={isPlaying}
+              >
+                {mode}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <Separator className="my-2" />
+        <div className="grid gap-4">
+          <h3 className="font-semibold">Speed</h3>
+          <Slider
+            defaultValue={[1800]}
+            min={5}
+            max={2000}
+            step={1}
+            onValueChange={handleSpeedChange}
+          />
         </div>
       </div>
     </aside>

@@ -79,7 +79,7 @@ const sort = async (
   }
 
   if (left === 0 && right === arr.length - 1) {
-    config.setDoneItems([...arr]);
+    config.setDoneItems([...arr]); // Ensure all items are marked as done
     config.setActiveItems([]);
   }
 };
@@ -110,8 +110,8 @@ export const useQuickSort = () => {
     } finally {
       config.abortRef.current = false; // Ensure abortRef is reset
       config.setActiveItems([]); // Clear active items
-      config.setTempItems([]); // Clear active items
-      config.setDoneItems([]); // Clear active items
+      config.setTempItems([]); // Clear temp items
+      // Don't clear done items here, as we want to keep the final state
     }
   };
 

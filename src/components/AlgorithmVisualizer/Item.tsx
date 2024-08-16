@@ -37,7 +37,7 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
             }
       }
       variants={{
-        active: { y: -200 },
+        active: { y: displayMode === "bars" ? -200 : -80 },
         inactive: { y: 0 },
         done: {
           y: 0,

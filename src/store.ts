@@ -65,6 +65,10 @@ export const useStore = create<StoreState>((set) => ({
   setIsPlaying: (isPlaying) => set({ isPlaying }),
   setDisplayMode: (displayMode) =>
     set((state) => {
+      if (displayMode === state.displayMode) {
+        return state;
+      }
+
       const newSize =
         displayMode === "numbers" && state.size > 20 ? 20 : state.size;
       return {

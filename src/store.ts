@@ -1,48 +1,31 @@
 import { create } from "zustand";
-import { createRef } from "react";
+import { createRef, MutableRefObject } from "react";
+import { generateUniqueRandomItems } from "./utils/generateItems";
+import type { Algorithm, DisplayMode, StateUpdater } from "./types";
+import { resolveState } from "./utils/stateUpdater";
 
-type Algorithm = "selection" | "bubble" | "quick" | "merge";
-
-export interface StoreState {
+export type StoreState = {
   arrayId: number;
-  speedRef: React.MutableRefObject<number>;
-  abortRef: React.MutableRefObject<boolean>;
+  speedRef: MutableRefObject<number>;
+  abortRef: MutableRefObject<boolean>;
   isPlaying: boolean;
   activeAlgorithm: Algorithm;
   size: number;
-  displayMode: "bars" | "numbers";
+  displayMode: DisplayMode;
   items: number[];
   activeItems: number[];
   tempItems: number[];
   doneItems: number[];
-  setDisplayMode: (displayMode: "bars" | "numbers") => void;
+  setDisplayMode: (displayMode: DisplayMode) => void;
   setIsPlaying: (isPlaying: boolean) => void;
   setActiveAlgorithm: (algorithm: Algorithm) => void;
   setSize: (size: number) => void;
-  setItems: (items: number[] | ((prevItems: number[]) => number[])) => void;
-  setActiveItems: (
-    items: number[] | ((prevItems: number[]) => number[])
-  ) => void;
-  setTempItems: (items: number[] | ((prevItems: number[]) => number[])) => void;
-  setDoneItems: (items: number[] | ((prevItems: number[]) => number[])) => void;
+  setItems: StateUpdater<number[]>;
+  setActiveItems: StateUpdater<number[]>;
+  setTempItems: StateUpdater<number[]>;
+  setDoneItems: StateUpdater<number[]>;
   createNewArray: () => void;
-}
-
-const generateUniqueRandomItems = (
-  count: number,
-  min: number,
-  max: number
-): number[] => {
-  const items = new Set<number>();
-  while (items.size < count) {
-    const randomNum = Math.round(Math.random() * (max - min) + min);
-    items.add(randomNum);
-  }
-  return Array.from(items);
 };
-
-const MIN = 5;
-const MAX = 50;
 
 let speedRef = createRef<number>() as React.MutableRefObject<number>; // eslint-disable-line prefer-const
 speedRef.current = 200;
@@ -58,7 +41,7 @@ export const useStore = create<StoreState>((set) => ({
   activeAlgorithm: "selection",
   displayMode: "bars",
   size: 30,
-  items: generateUniqueRandomItems(30, MIN, MAX),
+  items: generateUniqueRandomItems(30),
   activeItems: [],
   tempItems: [],
   doneItems: [],
@@ -68,13 +51,12 @@ export const useStore = create<StoreState>((set) => ({
       if (displayMode === state.displayMode) {
         return state;
       }
-
       const newSize =
         displayMode === "numbers" && state.size > 20 ? 20 : state.size;
       return {
         displayMode,
         size: newSize,
-        items: generateUniqueRandomItems(newSize, MIN, MAX),
+        items: generateUniqueRandomItems(newSize),
         arrayId: state.arrayId + 1,
       };
     }),
@@ -82,34 +64,28 @@ export const useStore = create<StoreState>((set) => ({
   setSize: (size) =>
     set((state) => ({
       size,
-      items: generateUniqueRandomItems(size, MIN, MAX),
+      items: generateUniqueRandomItems(size),
       arrayId: state.arrayId + 1,
     })),
   setItems: (items) =>
     set((state) => ({
-      items: typeof items === "function" ? items(state.items) : items,
+      items: resolveState(items, state.items),
     })),
   setActiveItems: (items) =>
     set((state) => ({
-      activeItems: typeof items === "function" ? items(state.items) : items,
+      activeItems: resolveState(items, state.activeItems),
     })),
   setTempItems: (activeItems) =>
     set((state) => ({
-      tempItems:
-        typeof activeItems === "function"
-          ? activeItems(state.activeItems)
-          : activeItems,
+      tempItems: resolveState(activeItems, state.tempItems),
     })),
   setDoneItems: (doneItems) =>
     set((state) => ({
-      doneItems:
-        typeof doneItems === "function"
-          ? doneItems(state.doneItems)
-          : doneItems,
+      doneItems: resolveState(doneItems, state.doneItems),
     })),
   createNewArray: () =>
     set((state) => ({
-      items: generateUniqueRandomItems(state.size, MIN, MAX),
+      items: generateUniqueRandomItems(state.size),
       arrayId: state.arrayId + 1,
       activeItems: [],
       tempItems: [],

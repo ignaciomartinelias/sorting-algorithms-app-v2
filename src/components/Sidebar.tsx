@@ -2,7 +2,7 @@ import { Separator } from "@radix-ui/react-separator";
 import { Button } from "./ui/button";
 import { Slider } from "./ui/slider";
 import type { Algorithm } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import {

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
 import { Reorder } from "framer-motion";
 import { memo } from "react";

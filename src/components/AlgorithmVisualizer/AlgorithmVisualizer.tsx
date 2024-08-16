@@ -1,7 +1,7 @@
 import { useStore } from "@/store";
 import { Reorder } from "framer-motion";
 import { Item } from "./Item";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 export const AlgorithmVisualizer = () => {
   const {

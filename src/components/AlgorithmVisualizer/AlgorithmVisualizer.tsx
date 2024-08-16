@@ -1,17 +1,27 @@
 import { useStore } from "@/store";
 import { Reorder } from "framer-motion";
 import { Item } from "./Item";
+import { cn } from "@/lib/utils";
 
 export const AlgorithmVisualizer = () => {
-  const { items, setItems, activeItems, doneItems, tempItems, arrayId } =
-    useStore();
+  const {
+    items,
+    setItems,
+    activeItems,
+    doneItems,
+    tempItems,
+    arrayId,
+    displayMode,
+  } = useStore();
 
   return (
     <Reorder.Group
       axis="x"
       values={items}
       onReorder={setItems}
-      className="max-w-5xl flex items-end gap-4 min-h-64"
+      className={cn("max-w-5xl flex items-end gap-4 min-h-64", {
+        "items-center": displayMode === "numbers",
+      })}
     >
       {items.map((item) => (
         <Item

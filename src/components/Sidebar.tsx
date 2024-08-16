@@ -4,6 +4,13 @@ import { Slider } from "./ui/slider";
 import type { Algorithm } from "@/types";
 import { cn } from "@/lib/utils";
 import { useStore } from "@/store";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 const sizesMap = {
   10: "Small",
@@ -67,14 +74,33 @@ export const Sidebar = () => {
         </div>
         <Separator className="my-2" />
         <div className="grid gap-4">
-          <h3 className="font-semibold">Visualizer Settings</h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-semibold">Array Size</h3>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <InfoCircledIcon className="w-4 h-4 text-background" />
+                </TooltipTrigger>
+                <TooltipContent
+                  className="w-80 p-4 gap-2 flex flex-col"
+                  side="right"
+                >
+                  <h4 className="font-semibold text-base">Array Size</h4>
+                  <p className="text-sm">
+                    The size of the array to be sorted. Smaller sizes are faster
+                    to visualize. Numbers mode is limited to 20 items (Medium).
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(sizesMap).map(([size, label]) => (
               <Button
                 key={size}
                 variant="outline"
                 className={cn(
-                  "flex items-center justify-center w-full gap-2 px-2",
+                  "flex items-center justify-center w-full gap-2 px-2 relative",
                   {
                     "bg-background text-foreground hover:bg-background/90 hover:text-white":
                       Number(size) === activeSize,

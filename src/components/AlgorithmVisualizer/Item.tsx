@@ -13,9 +13,21 @@ type Props = {
 export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
   const { speedRef, displayMode } = useStore();
 
-  // Normalize speed to a suitable animation duration (e.g., map 20-2000 to 0.05-2 seconds)
-  const normalizedSpeed = 0.05 + ((2000 - speedRef.current) / 1980) * 1.95;
-  const animationDuration = Math.max(0.05, normalizedSpeed); // Ensure a minimum duration of 0.05
+  // Calculate animation duration, normalized between 0.05 and 2 seconds
+  const animationDuration = Math.max(
+    0.05,
+    0.05 + ((2000 - speedRef.current) / 1980) * 1.95
+  );
+
+  // Determine styles based on display mode and item state
+  const itemStyles = displayMode === "bars" ? { height: item * 4 } : {};
+
+  // Determine animation state based on item state
+  const animationState = isDone
+    ? "done"
+    : isActive && !isTemp
+    ? "active"
+    : "inactive";
 
   return (
     <Reorder.Item
@@ -25,23 +37,14 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
         "bg-secondary": isActive,
         "bg-primary": isDone,
         "bg-tertiary": isTemp,
+        "w-20": displayMode === "bars",
+        "w-8 h-8": displayMode === "numbers",
       })}
-      style={
-        displayMode === "bars"
-          ? { width: 80, height: item * 4 }
-          : {
-              width: 40,
-              height: 40,
-              display: "grid",
-              placeItems: "center",
-            }
-      }
+      style={itemStyles}
       variants={{
-        active: { y: displayMode === "bars" ? -200 : -80 },
+        active: { y: displayMode === "bars" ? -200 : -48 },
         inactive: { y: 0 },
-        done: {
-          y: 0,
-        },
+        done: { y: 0 },
       }}
       transition={{
         type: "spring",
@@ -51,7 +54,7 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
         bounce: 0.3,
         duration: animationDuration,
       }}
-      animate={isDone ? "done" : isActive && !isTemp ? "active" : "inactive"}
+      animate={animationState}
     >
       {displayMode === "numbers" && (
         <span

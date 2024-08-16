@@ -28,7 +28,7 @@ export type StoreState = {
 };
 
 let speedRef = createRef<number>() as React.MutableRefObject<number>; // eslint-disable-line prefer-const
-speedRef.current = 200;
+speedRef.current = 500;
 
 let abortRef = createRef<boolean>() as React.MutableRefObject<boolean>; // eslint-disable-line prefer-const
 abortRef.current = false;

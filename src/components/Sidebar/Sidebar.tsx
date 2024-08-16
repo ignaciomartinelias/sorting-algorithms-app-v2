@@ -3,9 +3,11 @@ import { AlgorithmSelector } from "./AlgorithmSelector";
 import { SizeSelector } from "./SizeSelector";
 import { DisplayModeSelector } from "./DisplayModeSelector";
 import { SpeedSlider } from "./SpeedSlider";
+import { Logo } from "../Logo";
 
 export const Sidebar = () => (
-  <aside className="border-r w-64 p-6 flex flex-col gap-6">
+  <aside className="border-r w-64 p-6 flex flex-col relative">
+    <Logo />
     <div className="grid gap-4">
       <AlgorithmSelector />
       <Separator className="my-2" />

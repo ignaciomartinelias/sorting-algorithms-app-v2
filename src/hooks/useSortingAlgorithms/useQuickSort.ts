@@ -9,16 +9,19 @@ const markAsDone = (num: number, setDoneItems: StoreState["setDoneItems"]) => {
   setDoneItems((prev) => [...prev, num]);
 };
 
+type SortConfig = Pick<
+  StoreState,
+  "setItems" | "setActiveItems" | "setTempItems" | "setDoneItems" | "speedRef"
+>;
+
 const partition = async (
   arr: number[],
   left: number,
   right: number,
-  setItems: StoreState["setItems"],
-  setActiveItems: StoreState["setActiveItems"],
-  setTempItems: StoreState["setTempItems"],
-  setDoneItems: StoreState["setDoneItems"],
-  speedRef: StoreState["speedRef"]
+  config: SortConfig
 ): Promise<number> => {
+  const { setItems, setActiveItems, setTempItems, setDoneItems, speedRef } =
+    config;
   const pivotValue = arr[right];
   let pivotIndex = left;
 
@@ -46,50 +49,19 @@ const sort = async (
   arr: number[],
   left: number,
   right: number,
-  setItems: StoreState["setItems"],
-  setActiveItems: StoreState["setActiveItems"],
-  setTempItems: StoreState["setTempItems"],
-  setDoneItems: StoreState["setDoneItems"],
-  speedRef: StoreState["speedRef"]
+  config: SortConfig
 ): Promise<void> => {
   if (left < right) {
-    const partitionIndex = await partition(
-      arr,
-      left,
-      right,
-      setItems,
-      setActiveItems,
-      setTempItems,
-      setDoneItems,
-      speedRef
-    );
-    await sort(
-      arr,
-      left,
-      partitionIndex - 1,
-      setItems,
-      setActiveItems,
-      setTempItems,
-      setDoneItems,
-      speedRef
-    );
-    await sort(
-      arr,
-      partitionIndex + 1,
-      right,
-      setItems,
-      setActiveItems,
-      setTempItems,
-      setDoneItems,
-      speedRef
-    );
+    const partitionIndex = await partition(arr, left, right, config);
+    await sort(arr, left, partitionIndex - 1, config);
+    await sort(arr, partitionIndex + 1, right, config);
   } else if (left === right) {
-    markAsDone(arr[left], setDoneItems);
+    markAsDone(arr[left], config.setDoneItems);
   }
 
   if (left === 0 && right === arr.length - 1) {
-    setDoneItems([...arr]);
-    setActiveItems([]);
+    config.setDoneItems([...arr]);
+    config.setActiveItems([]);
   }
 };
 
@@ -102,15 +74,14 @@ export const useQuickSort = () => {
     setDoneItems,
     speedRef,
   } = useStore();
-  return () =>
-    sort(
-      [...items],
-      0,
-      items.length - 1,
-      setItems,
-      setActiveItems,
-      setTempItems,
-      setDoneItems,
-      speedRef
-    );
+
+  const config: SortConfig = {
+    setItems,
+    setActiveItems,
+    setTempItems,
+    setDoneItems,
+    speedRef,
+  };
+
+  return () => sort([...items], 0, items.length - 1, config);
 };

@@ -19,7 +19,7 @@ export const AlgorithmSelector = () => {
             className={cn(
               "flex items-center justify-center w-full gap-2 px-2 text-center capitalize",
               {
-                "bg-background text-foreground hover:bg-background/90 hover:text-white":
+                "bg-foreground text-background hover:bg-foreground/90 hover:text-white":
                   activeAlgorithm === algorithm,
               }
             )}

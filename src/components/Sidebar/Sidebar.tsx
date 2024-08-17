@@ -6,7 +6,7 @@ import { SpeedSlider } from "./SpeedSlider";
 import { Logo } from "../Logo";
 
 export const Sidebar = () => (
-  <aside className="border-r w-64 p-6 flex flex-col relative">
+  <aside className="border-r w-96 p-6 flex flex-col relative">
     <Logo />
     <div className="grid gap-4">
       <AlgorithmSelector />

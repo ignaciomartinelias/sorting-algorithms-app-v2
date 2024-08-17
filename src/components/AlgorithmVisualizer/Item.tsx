@@ -33,7 +33,7 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
     <Reorder.Item
       drag={false}
       value={item}
-      className={cn("rounded-sm grid place-items-center bg-foreground", {
+      className={cn("rounded-sm grid place-items-center bg-background", {
         "bg-secondary": isActive,
         "bg-primary": isDone,
         "bg-tertiary": isTemp,
@@ -58,7 +58,7 @@ export const Item = memo(({ item, isActive, isDone, isTemp }: Props) => {
     >
       {displayMode === "numbers" && (
         <span
-          className={cn("text-xs text-background font-semibold", {
+          className={cn("text-xs text-foreground font-semibold", {
             "text-white": isDone || isActive,
           })}
         >

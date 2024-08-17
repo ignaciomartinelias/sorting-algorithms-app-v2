@@ -43,7 +43,7 @@ export const SizeSelector = () => {
             className={cn(
               "flex items-center justify-center w-full gap-2 px-2 relative",
               {
-                "bg-background text-foreground hover:bg-background/90 hover:text-white":
+                "bg-foreground text-background hover:bg-foreground/90 hover:text-white":
                   Number(size) === activeSize,
               }
             )}

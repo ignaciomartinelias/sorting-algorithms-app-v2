@@ -19,7 +19,7 @@ export const AlgorithmVisualizer = () => {
       axis="x"
       values={items}
       onReorder={setItems}
-      className={cn("max-w-5xl flex items-end gap-4 min-h-64", {
+      className={cn("max-w-5xl flex items-end gap-4 min-h-96", {
         "items-center": displayMode === "numbers",
       })}
     >

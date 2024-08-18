@@ -2,7 +2,6 @@ import { Sidebar } from "./components/Sidebar";
 
 import { AlgorithmVisualizer } from "./components/AlgorithmVisualizer";
 import { Header } from "./components/Header";
-import { Separator } from "./components/ui/separator";
 import { Controls } from "./components/Controls";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       <main className="flex flex-col flex-1 p-10 items-center gap-20">
         <div className="container flex flex-col gap-10 h-full">
           <Header />
-          <Separator className="my-auto" />
           <AlgorithmVisualizer />
           <Controls />
         </div>

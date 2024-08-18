@@ -15,7 +15,7 @@ export const AlgorithmVisualizer = () => {
   } = useStore();
 
   return (
-    <div className="border border-accent/50 p-10 rounded flex items-center justify-center">
+    <div className="border border-accent/50 p-10 rounded flex items-center justify-center mt-auto">
       <Reorder.Group
         axis="x"
         values={items}

@@ -5,19 +5,18 @@ import { Badge } from "./ui/badge";
 
 type AlgorithmDetails = {
   title: string;
-  longDescription: string;
+  description: string;
   timeComplexity: {
     best: string;
     average: string;
     worst: string;
   };
 };
-
 const sortingAlgorithmsMap: Record<Algorithm, AlgorithmDetails> = {
   selection: {
     title: "Selection Sort",
-    longDescription:
-      "Selection Sort is most effective on small datasets where simplicity is valued over efficiency. It works well when the cost of swapping elements is high relative to comparing them, as it minimizes the number of swaps. However, it performs poorly on large datasets and nearly sorted arrays, as its O(n²) time complexity leads to slow performance.",
+    description:
+      "Selection Sort is straightforward and works well for small datasets. It repeatedly selects the smallest element from the unsorted portion and moves it to the front. While it minimizes swaps, its O(n²) time complexity makes it inefficient for large or nearly sorted datasets.",
     timeComplexity: {
       best: "O(n²)",
       average: "O(n²)",
@@ -26,8 +25,8 @@ const sortingAlgorithmsMap: Record<Algorithm, AlgorithmDetails> = {
   },
   bubble: {
     title: "Bubble Sort",
-    longDescription:
-      "Bubble Sort works best on datasets that are nearly sorted, as its best-case time complexity is O(n) when no swaps are needed. It's easy to implement and understand but is highly inefficient for large or completely unsorted datasets due to its O(n²) average and worst-case time complexity. It is often used for educational purposes or in scenarios where simplicity and code clarity are more important than performance.",
+    description:
+      "Bubble Sort is simple and ideal for nearly sorted datasets, offering a best-case time complexity of O(n). It repeatedly steps through the list, comparing adjacent elements and swapping them if necessary. However, it’s inefficient for large or unsorted datasets due to its O(n²) complexity.",
     timeComplexity: {
       best: "O(n)",
       average: "O(n²)",
@@ -36,8 +35,8 @@ const sortingAlgorithmsMap: Record<Algorithm, AlgorithmDetails> = {
   },
   quick: {
     title: "Quick Sort",
-    longDescription:
-      "Quick Sort excels in most general-purpose sorting tasks due to its average-case time complexity of O(n log n). It performs best when the pivot selection splits the array into roughly equal halves, such as in randomized or evenly distributed datasets. However, it can perform poorly on datasets that are already sorted or contain many duplicate values, leading to its worst-case time complexity of O(n²). It’s widely used in practice due to its in-place nature and generally good performance.",
+    description:
+      "Quick Sort is a fast, general-purpose sort with an average time complexity of O(n log n). It works by dividing the array into partitions around a pivot element. For simplicity in animations, this implementation always uses the last element as the pivot, which can sometimes lead to suboptimal performance on already sorted or nearly sorted arrays.",
     timeComplexity: {
       best: "O(n log n)",
       average: "O(n log n)",
@@ -46,8 +45,8 @@ const sortingAlgorithmsMap: Record<Algorithm, AlgorithmDetails> = {
   },
   merge: {
     title: "Merge Sort",
-    longDescription:
-      "Merge Sort is particularly effective on large datasets and linked lists, where its consistent O(n log n) time complexity makes it reliable. It works best on datasets where stability (preserving the relative order of equal elements) is important, and it performs consistently regardless of the input distribution. However, it requires additional memory space proportional to the input size, making it less suitable for memory-constrained environments.",
+    description:
+      "Merge Sort is a stable and reliable algorithm with a consistent O(n log n) time complexity. It works well on large datasets and is effective regardless of the initial data distribution. However, it requires additional memory for merging, which can be a drawback in memory-constrained environments.",
     timeComplexity: {
       best: "O(n log n)",
       average: "O(n log n)",
@@ -65,7 +64,7 @@ export const Header = () => {
         {sortingAlgorithmsMap[activeAlgorithm].title}
       </h1>
       <p className="text-lg">
-        {sortingAlgorithmsMap[activeAlgorithm].longDescription}
+        {sortingAlgorithmsMap[activeAlgorithm].description}
       </p>
       <div className="flex items-center gap-4">
         <h2 className="flex items-center gap-2 bg-accent px-4 py-2 rounded">

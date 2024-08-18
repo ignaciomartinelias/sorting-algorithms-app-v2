@@ -1,21 +1,13 @@
-import { Separator } from "@radix-ui/react-separator";
+import { motion } from "framer-motion";
 import { AlgorithmSelector } from "./AlgorithmSelector";
-import { SizeSelector } from "./SizeSelector";
-import { DisplayModeSelector } from "./DisplayModeSelector";
-import { SpeedSlider } from "./SpeedSlider";
-import { Logo } from "../Logo";
+
+import { Settings } from "./Settings";
 
 export const Sidebar = () => (
-  <aside className="border-r w-96 p-6 flex flex-col relative">
-    <Logo />
-    <div className="grid gap-4">
+  <motion.aside className="w-96 p-10 flex flex-col justify-between border-accent/50 transition border-r-2 hover:border-accent">
+    <div className="flex flex-col h-full gap-20">
       <AlgorithmSelector />
-      <Separator className="my-2" />
-      <SizeSelector />
-      <Separator className="my-2" />
-      <DisplayModeSelector />
-      <Separator className="my-2" />
-      <SpeedSlider />
+      <Settings />
     </div>
-  </aside>
+  </motion.aside>
 );

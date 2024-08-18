@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 
 import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
 import { useStore } from "@/store";
+import { SpeedSlider } from "./Sidebar/SpeedSlider";
 
 export const Controls = () => {
   const {
@@ -32,15 +33,21 @@ export const Controls = () => {
   const isDone = doneItems.length === items.length;
 
   return (
-    <div className="flex gap-8">
+    <div className="flex items-center gap-4">
+      <SpeedSlider />
       {isPlaying ? (
-        <Button variant={"outline"} onClick={handleStopAnimation}>
+        <Button
+          variant="ghost"
+          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2"
+          onClick={handleStopAnimation}
+        >
           <PauseIcon className="h-4 w-4 mr-2" />
           Stop Animation
         </Button>
       ) : (
         <Button
-          variant={"outline"}
+          variant="ghost"
+          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2"
           onClick={handlePlayAnimation}
           disabled={isDone}
         >
@@ -49,7 +56,12 @@ export const Controls = () => {
         </Button>
       )}
 
-      <Button variant="outline" onClick={createNewArray} disabled={isPlaying}>
+      <Button
+        variant="ghost"
+        className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2"
+        onClick={createNewArray}
+        disabled={isPlaying}
+      >
         <UpdateIcon className="h-4 w-4 mr-2" /> Create new array
       </Button>
     </div>

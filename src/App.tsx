@@ -1,17 +1,21 @@
 import { Sidebar } from "./components/Sidebar";
 
-import { Controls } from "./components/Controls";
 import { AlgorithmVisualizer } from "./components/AlgorithmVisualizer";
 import { Header } from "./components/Header";
+import { Separator } from "./components/ui/separator";
+import { Controls } from "./components/Controls";
 
 function App() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-background">
       <Sidebar />
-      <main className="flex flex-col flex-1 p-6 items-center justify-center gap-20">
-        <Header />
-        <AlgorithmVisualizer />
-        <Controls />
+      <main className="flex flex-col flex-1 p-10 items-center gap-20">
+        <div className="container flex flex-col gap-10 h-full">
+          <Header />
+          <Separator className="my-auto" />
+          <AlgorithmVisualizer />
+          <Controls />
+        </div>
       </main>
     </div>
   );

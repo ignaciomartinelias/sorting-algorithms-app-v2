@@ -8,17 +8,17 @@ export const DisplayModeSelector = () => {
   const { displayMode, setDisplayMode, isPlaying } = useStore();
 
   return (
-    <div className="grid gap-4">
-      <h3 className="font-semibold">Display Mode</h3>
+    <div className="flex flex-col gap-4">
+      <h3 className="font-medium text-foreground text-lg">Display Mode</h3>
       <div className="grid grid-cols-2 gap-2">
         {displayModes.map((mode) => (
           <Button
             key={mode}
-            variant="outline"
+            variant="ghost"
             className={cn(
-              "flex items-center justify-center w-full gap-2 px-2 capitalize",
+              "px-4 py-2 capitalize text-white hover:bg-accent hover:text-white h-auto border-2 border-accent",
               {
-                "bg-foreground text-background hover:bg-foreground/90 hover:text-white":
+                "bg-accent hover:bg-accent/90 hover:text-white":
                   mode === displayMode,
               }
             )}

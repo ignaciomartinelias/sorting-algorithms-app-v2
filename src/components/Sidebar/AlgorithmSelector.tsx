@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 import { Algorithm } from "@/types";
 import { useStore } from "@/store";
 import { Button } from "../ui/button";
+import { Title } from "./Title";
 
 const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
 
@@ -9,17 +10,17 @@ export const AlgorithmSelector = () => {
   const { activeAlgorithm, setActiveAlgorithm, isPlaying } = useStore();
 
   return (
-    <div className="grid gap-4">
-      <h3 className="font-semibold">Algorithms</h3>
-      <div className="grid gap-2">
+    <div className="flex flex-col gap-8">
+      <Title title="Sorting Algorithms" />
+      <div className="flex flex-col gap-4">
         {algorithms.map((algorithm) => (
           <Button
             key={algorithm}
-            variant="outline"
+            variant="ghost"
             className={cn(
-              "flex items-center justify-center w-full gap-2 px-2 text-center capitalize",
+              "px-4 py-2 capitalize text-base text-foreground justify-start hover:bg-accent hover:text-foreground h-auto",
               {
-                "bg-foreground text-background hover:bg-foreground/90 hover:text-white":
+                "bg-primary text-background hover:bg-primary/90 hover:text-background":
                   activeAlgorithm === algorithm,
               }
             )}

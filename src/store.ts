@@ -47,19 +47,7 @@ export const useStore = create<StoreState>((set) => ({
   doneItems: [],
   setIsPlaying: (isPlaying) => set({ isPlaying }),
   setDisplayMode: (displayMode) =>
-    set((state) => {
-      if (displayMode === state.displayMode) {
-        return state;
-      }
-      const newSize =
-        displayMode === "numbers" && state.size > 20 ? 20 : state.size;
-      return {
-        displayMode,
-        size: newSize,
-        items: generateUniqueRandomItems(newSize),
-        arrayId: state.arrayId + 1,
-      };
-    }),
+    set((state) => ({ displayMode, arrayId: state.arrayId + 1 })),
   setActiveAlgorithm: (algorithm) => set({ activeAlgorithm: algorithm }),
   setSize: (size) =>
     set((state) => ({

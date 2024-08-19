@@ -5,7 +5,25 @@ import { Button } from "../ui/button";
 const displayModes = ["bars", "numbers"] as const;
 
 export const DisplayModeSelector = () => {
-  const { displayMode, setDisplayMode, isPlaying } = useStore();
+  const {
+    displayMode,
+    setDisplayMode,
+    size,
+    setSize,
+    isPlaying,
+    setDoneItems,
+  } = useStore();
+
+  const handleDisplayModeChange = (mode: (typeof displayModes)[number]) => {
+    if (mode !== displayMode) {
+      setDoneItems([]);
+      setDisplayMode(mode);
+
+      if (mode === "numbers" && size > 20) {
+        setSize(20);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -22,7 +40,7 @@ export const DisplayModeSelector = () => {
                   mode === displayMode,
               }
             )}
-            onClick={() => setDisplayMode(mode)}
+            onClick={() => handleDisplayModeChange(mode)}
             disabled={isPlaying}
           >
             {mode}

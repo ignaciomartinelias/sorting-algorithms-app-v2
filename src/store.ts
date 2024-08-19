@@ -46,8 +46,7 @@ export const useStore = create<StoreState>((set) => ({
   tempItems: [],
   doneItems: [],
   setIsPlaying: (isPlaying) => set({ isPlaying }),
-  setDisplayMode: (displayMode) =>
-    set((state) => ({ displayMode, arrayId: state.arrayId + 1 })),
+  setDisplayMode: (displayMode) => set({ displayMode }),
   setActiveAlgorithm: (algorithm) => set({ activeAlgorithm: algorithm }),
   setSize: (size) =>
     set((state) => ({

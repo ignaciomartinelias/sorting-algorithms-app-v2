@@ -33,7 +33,7 @@ export const Controls = () => {
   const isDone = doneItems.length === items.length;
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-auto">
+    <div className="flex flex-col lg:flex-row items-center gap-4">
       <SpeedSlider />
       <div className="flex items-center gap-4 w-full">
         <Button

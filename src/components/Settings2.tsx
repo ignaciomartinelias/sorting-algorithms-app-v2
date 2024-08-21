@@ -39,7 +39,7 @@ export const Settings = () => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex lg:hidden items-center justify-between">
       <div className="rounded flex items-center overflow-hidden">
         {displayModes.map((mode) => (
           <Button

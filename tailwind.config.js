@@ -18,11 +18,6 @@ module.exports = {
     },
 
     extend: {
-      screens: {
-        short: {
-          raw: "(max-height: 750px)",
-        },
-      },
       colors: {
         background: "#0A100D",
         foreground: "#EEE5E9",

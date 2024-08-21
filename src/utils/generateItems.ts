@@ -1,10 +1,10 @@
-const MIN = 5;
-const MAX = 50;
+export const MIN_ITEM = 5;
+export const MAX_ITEM = 50;
 
 export const generateUniqueRandomItems = (
   count: number,
-  min: number = MIN,
-  max: number = MAX
+  min: number = MIN_ITEM,
+  max: number = MAX_ITEM
 ): number[] => {
   const items = new Set<number>();
   while (items.size < count) {

@@ -5,6 +5,7 @@ import type { Algorithm, DisplayMode, StateUpdater } from "./types";
 import { resolveState } from "./utils/stateUpdater";
 
 export type StoreState = {
+  isMobile: boolean;
   arrayId: number;
   speedRef: MutableRefObject<number>;
   abortRef: MutableRefObject<boolean>;
@@ -16,6 +17,7 @@ export type StoreState = {
   activeItems: number[];
   tempItems: number[];
   doneItems: number[];
+  setIsMobile: (isMobile: boolean) => void;
   setDisplayMode: (displayMode: DisplayMode) => void;
   setIsPlaying: (isPlaying: boolean) => void;
   setActiveAlgorithm: (algorithm: Algorithm) => void;
@@ -34,6 +36,7 @@ let abortRef = createRef<boolean>() as React.MutableRefObject<boolean>; // eslin
 abortRef.current = false;
 
 export const useStore = create<StoreState>((set) => ({
+  isMobile: false,
   arrayId: 0,
   speedRef,
   abortRef,
@@ -45,6 +48,7 @@ export const useStore = create<StoreState>((set) => ({
   activeItems: [],
   tempItems: [],
   doneItems: [],
+  setIsMobile: (isMobile) => set({ isMobile }),
   setIsPlaying: (isPlaying) => set({ isPlaying }),
   setDisplayMode: (displayMode) => set({ displayMode }),
   setActiveAlgorithm: (algorithm) => set({ activeAlgorithm: algorithm }),

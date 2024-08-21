@@ -26,24 +26,8 @@ function App() {
 
   return (
     <main className="flex flex-col gap-4 p-8 h-dvh bg-background text-foreground">
-      <Drawer>
-        <DrawerTrigger asChild>
-          <Button
-            variant="ghost"
-            className="bg-accent border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full"
-            disabled={isPlaying}
-          >
-            Select Algorithm
-            <ChevronDownIcon className="h-6 w-6 ml-auto" />
-          </Button>
-        </DrawerTrigger>
-        <DrawerContent className="bg-background border-none border-accent/50">
-          <AlgorithmSelector />
-        </DrawerContent>
-      </Drawer>
-
       <div className="flex flex-col gap-2 bg-accent p-4 rounded">
-        <h2 className="text-lg font-medium relative">{title}</h2>
+        <h2 className="text-xl font-semibold relative">{title}</h2>
         <p>{shortDescription}</p>
 
         <Drawer>
@@ -63,7 +47,21 @@ function App() {
 
       <Settings />
       <AlgorithmVisualizer />
-
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button
+            variant="ghost"
+            className="bg-accent border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full"
+            disabled={isPlaying}
+          >
+            {title}
+            <ChevronDownIcon className="h-6 w-6 ml-auto" />
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent className="bg-background border-none border-accent/50">
+          <AlgorithmSelector />
+        </DrawerContent>
+      </Drawer>
       <Controls />
     </main>
   );

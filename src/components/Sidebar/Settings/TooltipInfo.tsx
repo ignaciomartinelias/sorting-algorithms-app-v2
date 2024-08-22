@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from "@/components/ui/tooltip";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 type TooltipInfoProps = {

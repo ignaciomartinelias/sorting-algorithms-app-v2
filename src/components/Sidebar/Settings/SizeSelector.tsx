@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
 import { TooltipInfo } from "./TooltipInfo";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { sizesMap } from "@/consts/sizesMap";
 
 export const SizeSelector = () => {

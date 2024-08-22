@@ -7,7 +7,7 @@ import { displayModes } from "@/consts/displayModes";
 import { sizesMap } from "@/consts/sizesMap";
 import { getInitials } from "@/utils/getInitials";
 
-export const Settings = () => {
+export const MobileSettings = () => {
   const {
     displayMode,
     setDisplayMode,

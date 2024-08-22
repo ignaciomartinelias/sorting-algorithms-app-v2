@@ -1,6 +1,6 @@
 import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const displayModes = ["bars", "numbers"] as const;
 

@@ -1,6 +1,6 @@
 import { DisplayModeSelector } from "./DisplayModeSelector";
 import { SizeSelector } from "./SizeSelector";
-import { Title } from "./Title";
+import { Title } from "../Title";
 
 export const Settings = () => {
   return (

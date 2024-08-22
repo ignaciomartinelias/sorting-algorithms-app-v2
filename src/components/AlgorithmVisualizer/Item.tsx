@@ -2,24 +2,22 @@ import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
 import { motion, Reorder } from "framer-motion";
 import { memo } from "react";
+import { MAX_ITEM } from "@/utils/generateItems";
 
 type Props = {
   item: number;
   isActive: boolean;
   isDone: boolean;
   isTemp: boolean;
-  itemWidth: number;
   itemMaxHeight: number;
 };
 
 const calculateItemHeight = (item: number, itemMaxHeight: number) => {
-  const maxItemValue = 50;
-
-  return ((item / maxItemValue) * itemMaxHeight) / 2;
+  return ((item / MAX_ITEM) * itemMaxHeight) / 2;
 };
 
 export const Item = memo(
-  ({ item, isActive, isDone, isTemp, itemWidth, itemMaxHeight }: Props) => {
+  ({ item, isActive, isDone, isTemp, itemMaxHeight }: Props) => {
     const { speedRef, displayMode, size } = useStore();
 
     // Calculate animation duration, normalized between 0.05 and 2 seconds
@@ -28,16 +26,13 @@ export const Item = memo(
       0.05 + ((2000 - speedRef.current) / 1980) * 1.95
     );
 
-    // Determine styles based on display mode and item state
     const itemStyles = {
-      width: itemWidth,
       height:
         displayMode === "bars"
           ? calculateItemHeight(item, itemMaxHeight)
-          : itemWidth,
+          : "auto",
     };
 
-    // Determine animation state based on item state
     const animationState = isDone
       ? "done"
       : isActive && !isTemp
@@ -49,17 +44,18 @@ export const Item = memo(
         drag={false}
         value={item}
         className={cn(
-          "rounded grid place-items-center bg-foreground origin-center",
+          "rounded-sm md:rounded grid place-items-center bg-foreground origin-center w-full",
           {
             "bg-secondary": isActive,
             "bg-primary": isDone,
             "bg-tertiary": isTemp,
+            "aspect-square": displayMode === "numbers",
           }
         )}
         style={itemStyles}
         variants={{
           active: {
-            y: displayMode === "bars" ? -itemMaxHeight / 2 : -itemWidth,
+            y: displayMode === "bars" ? -itemMaxHeight / 2 : -itemMaxHeight / 8,
           },
           inactive: { y: 0 },
           done: { y: 0 },
@@ -80,7 +76,7 @@ export const Item = memo(
             animate={{ opacity: 1 }}
             className={cn("text-xs text-background font-semibold", {
               "text-white": isDone || isActive,
-              "text-base": size === 10,
+              "md:text-base": size === 10,
             })}
           >
             {item}

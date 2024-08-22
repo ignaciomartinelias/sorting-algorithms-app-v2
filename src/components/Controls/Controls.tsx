@@ -1,9 +1,9 @@
 import { PauseIcon, PlayIcon, UpdateIcon } from "@radix-ui/react-icons";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
 import { useStore } from "@/store";
-import { SpeedSlider } from "./Sidebar/SpeedSlider";
+import { SpeedSlider } from "./SpeedSlider";
 
 export const Controls = () => {
   const {

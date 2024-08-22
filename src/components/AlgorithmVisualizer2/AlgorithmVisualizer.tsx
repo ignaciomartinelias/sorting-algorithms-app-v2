@@ -25,14 +25,14 @@ export const AlgorithmVisualizer = () => {
   }, []);
 
   return (
-    <div className="border border-accent/50 rounded flex items-center justify-center overflow-hidden h-full p-1 md:p-2 lg:p-3 xl:p-4">
+    <div className="border border-accent/50 lg:border-none lg:bg-accent rounded flex items-center justify-center overflow-hidden h-full p-1 md:p-2 lg:p-3 xl:p-8">
       <Reorder.Group
         ref={containerRef}
         axis="x"
         values={items}
         onReorder={setItems}
         className={cn(
-          "w-full flex items-end justify-center md:gap-2 gap-1 lg:gap-3 xl:gap-4 h-full",
+          "w-full lg:max-w-4xl flex items-end justify-center md:gap-2 gap-1 lg:gap-3 h-full",
           {
             "items-center": displayMode === "numbers",
           }

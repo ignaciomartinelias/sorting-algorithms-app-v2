@@ -2,13 +2,7 @@ import { cn } from "@/utils/cn";
 import { useStore } from "@/store";
 import { TooltipInfo } from "./TooltipInfo";
 import { Button } from "../ui/button";
-
-const sizesMap = {
-  10: "Small",
-  20: "Medium",
-  30: "Large",
-  40: "XL",
-};
+import { sizesMap } from "@/consts/sizesMap";
 
 export const SizeSelector = () => {
   const {

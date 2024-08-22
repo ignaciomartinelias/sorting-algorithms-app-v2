@@ -12,6 +12,7 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { useMediaQuery } from "usehooks-ts";
 import { useEffect } from "react";
 import { Sidebar } from "./components/Sidebar";
+import { Separator } from "./components/ui/separator";
 
 function App() {
   const { activeAlgorithm, isPlaying, setIsMobile, setSize } = useStore();
@@ -28,7 +29,7 @@ function App() {
   return (
     <div className="flex h-dvh bg-background text-foreground">
       <Sidebar />
-      <main className="lg:container lg:max-w-7xl flex flex-col gap-4 lg:gap-8 p-8 h-full w-full">
+      <main className="lg:container lg:max-w-7xl flex flex-col gap-4 lg:gap-10 p-8 lg:p-10 h-full w-full">
         <div className="flex md:hidden flex-col gap-2 bg-accent p-4 rounded">
           <h2 className="text-2xl font-medium relative">{title}</h2>
           <p>{shortDescription}</p>
@@ -47,8 +48,9 @@ function App() {
             </DrawerContent>
           </Drawer>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex flex-col gap-10">
           <Header />
+          <Separator />
         </div>
 
         <Settings />

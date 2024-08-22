@@ -5,6 +5,7 @@ import { cn } from "@/utils/cn";
 import { DisplayMode } from "@/types";
 import { displayModes } from "@/consts/displayModes";
 import { sizesMap } from "@/consts/sizesMap";
+import { getInitials } from "@/utils/getInitials";
 
 export const Settings = () => {
   const {
@@ -75,7 +76,7 @@ export const Settings = () => {
                   (Number(size) > 20 || (isMobile && Number(size) > 10)))
               }
             >
-              {label}
+              {getInitials(label)}
             </Button>
           ))}
       </div>

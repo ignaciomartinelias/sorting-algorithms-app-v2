@@ -22,19 +22,19 @@ export const Header = () => {
           Complexity <TimerIcon className="w-4 h-4" />
         </h2>
         <div className="flex items-center gap-2 lg:gap-4">
-          <Badge className="flex flex-col md:flex-row w-1/3 lg:w-auto lg:gap-2">
+          <Badge className="flex flex-col md:flex-row w-1/3 md:w-auto md:gap-2">
             Best
             <span className="font-normal">
               {sortingAlgorithms[activeAlgorithm].timeComplexity.best}
             </span>
           </Badge>
-          <Badge className="flex flex-col md:flex-row w-1/3 lg:w-auto lg:gap-2">
+          <Badge className="flex flex-col md:flex-row w-1/3 md:w-auto md:gap-2">
             Average
             <span className="font-normal">
               {sortingAlgorithms[activeAlgorithm].timeComplexity.average}
             </span>
           </Badge>
-          <Badge className="flex flex-col md:flex-row w-1/3 lg:w-auto lg:gap-2">
+          <Badge className="flex flex-col md:flex-row w-1/3 md:w-auto md:gap-2">
             Worst
             <span className="font-normal">
               {sortingAlgorithms[activeAlgorithm].timeComplexity.worst}

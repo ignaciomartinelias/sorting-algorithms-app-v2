@@ -38,7 +38,7 @@ export const Controls = () => {
       <div className="flex items-center gap-4 w-full lg:w-auto">
         <Button
           variant="ghost"
-          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full md:w-36 lg:w-48"
+          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full lg:w-48"
           onClick={isPlaying ? handleStopAnimation : handlePlayAnimation}
           disabled={!isPlaying && isDone}
         >
@@ -52,7 +52,7 @@ export const Controls = () => {
 
         <Button
           variant="ghost"
-          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full md:w-36 lg:w-48"
+          className="bg-background border-2 border-accent hover:bg-accent text-base text-foreground hover:text-foreground h-auto px-4 py-2 w-full lg:w-48"
           onClick={createNewArray}
           disabled={isPlaying}
         >

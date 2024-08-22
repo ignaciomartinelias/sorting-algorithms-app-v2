@@ -20,7 +20,7 @@ function App() {
     if (isMobile) {
       setSize(20);
     }
-  }, [isMobile]);
+  }, [isMobile, setIsMobile, setSize]);
 
   return (
     <div className="flex h-dvh bg-background text-foreground">

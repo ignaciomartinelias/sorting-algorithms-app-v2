@@ -2,6 +2,18 @@
 
 This project is a visualizer for various sorting algorithms. It provides an interactive way to learn and understand how different sorting algorithms work by displaying them in action. The application is built using modern web development tools, including React, TypeScript, and Zustand for state management.
 
+## Demo
+
+Check out the live demo of the application [here](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/).
+
+### Desktop View
+
+https://github.com/user-attachments/assets/86bbed79-9078-4e2d-bb3e-5e4f7c083fe8
+
+### Mobile View
+
+https://github.com/user-attachments/assets/c3705203-1f45-4e31-867c-3eb92f1a8f0e
+
 ## Features
 
 - **Responsive Design**: The visualizer is fully responsive, offering a seamless experience on both desktop and mobile devices.
@@ -48,16 +60,6 @@ pnpm dev
 - **Select an Algorithm**: Choose from the available sorting algorithms in the sidebar.
 - **Adjust Settings**: Use the controls to adjust speed, array size, and display mode.
 - **Start Visualization**: Click the "Play" button to start the visualization of the selected algorithm.
-
-## Demo
-
-### Desktop View
-
-https://github.com/user-attachments/assets/86bbed79-9078-4e2d-bb3e-5e4f7c083fe8
-
-### Mobile View
-
-https://github.com/user-attachments/assets/c3705203-1f45-4e31-867c-3eb92f1a8f0e
 
 ## Pending Features
 

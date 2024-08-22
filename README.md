@@ -53,11 +53,11 @@ pnpm dev
 
 ### Desktop View
 
-[![Desktop Demo](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/Desktop%20Demo.mp4)](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/Desktop%20Demo.mp4)
+https://github.com/user-attachments/assets/86bbed79-9078-4e2d-bb3e-5e4f7c083fe8
 
 ### Mobile View
 
-[![Mobile Demo](https://img.youtube.com/vi/your_mobile_demo_video_id/0.jpg)](https://www.youtube.com/watch?v=your_mobile_demo_video_id)
+https://github.com/user-attachments/assets/c3705203-1f45-4e31-867c-3eb92f1a8f0e
 
 ## Pending Features
 

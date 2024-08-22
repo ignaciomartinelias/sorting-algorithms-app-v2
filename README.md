@@ -53,7 +53,7 @@ pnpm dev
 
 ### Desktop View
 
-[![Desktop Demo](https://img.youtube.com/vi/your_desktop_demo_video_id/0.jpg)](https://www.youtube.com/watch?v=your_desktop_demo_video_id)
+[![Desktop Demo](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/Desktop%20Demo.mp4)](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/Desktop%20Demo.mp4)
 
 ### Mobile View
 

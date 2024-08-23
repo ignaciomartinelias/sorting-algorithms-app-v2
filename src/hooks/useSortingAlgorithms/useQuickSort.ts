@@ -1,13 +1,5 @@
 import { StoreState, useStore } from "@/store";
-import { sleep } from "./utils";
-
-const swap = (arr: number[], i: number, j: number) => {
-  [arr[i], arr[j]] = [arr[j], arr[i]];
-};
-
-const markAsDone = (num: number, setDoneItems: StoreState["setDoneItems"]) => {
-  setDoneItems((prev) => [...prev, num]);
-};
+import { markAsDone, sleep, swap } from "./utils";
 
 type SortConfig = Pick<
   StoreState,

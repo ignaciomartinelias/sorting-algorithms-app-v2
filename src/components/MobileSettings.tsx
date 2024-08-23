@@ -44,6 +44,7 @@ export const MobileSettings = () => {
       <div className="rounded flex items-center overflow-hidden">
         {displayModes.map((mode) => (
           <Button
+            key={mode}
             className={cn(
               "p-2 border-2 border-r-0 border-accent/50 bg-background rounded-none h-10 w-10 active:bg-accent hover:bg-accent focus:bg-accent last:border-r-2",
               {
@@ -63,6 +64,7 @@ export const MobileSettings = () => {
           .filter(([size]) => !isMobile || (isMobile && Number(size) < 40))
           .map(([size, label]) => (
             <Button
+              key={label}
               className={cn(
                 "p-2 border-2 border-r-0 border-accent/50 bg-background rounded-none w-10 h-10 active:bg-accent hover:bg-accent focus:bg-accent last:border-r-2",
                 {

@@ -7,7 +7,7 @@ import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "./ui/drawer";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { sortingAlgorithms } from "@/consts/sortingAlgorithms";
 
-const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
+const algorithms = Object.keys(sortingAlgorithms) as Algorithm[];
 
 export const MobileAlgorithmSelector = () => {
   const { activeAlgorithm, setActiveAlgorithm, isPlaying } = useStore();
@@ -31,7 +31,7 @@ export const MobileAlgorithmSelector = () => {
           <Title title="Sorting Algorithms" />
           <div className="flex flex-col gap-4">
             {algorithms.map((algorithm) => (
-              <DrawerClose asChild>
+              <DrawerClose asChild key={algorithm}>
                 <Button
                   key={algorithm}
                   variant="ghost"

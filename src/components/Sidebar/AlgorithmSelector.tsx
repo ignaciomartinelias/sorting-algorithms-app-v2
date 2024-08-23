@@ -3,8 +3,9 @@ import { Algorithm } from "@/types";
 import { useStore } from "@/store";
 import { Button } from "../ui/button";
 import { Title } from "./Title";
+import { sortingAlgorithms } from "@/consts/sortingAlgorithms";
 
-const algorithms: Algorithm[] = ["selection", "bubble", "quick"];
+const algorithms = Object.keys(sortingAlgorithms) as Algorithm[];
 
 export const AlgorithmSelector = () => {
   const { activeAlgorithm, setActiveAlgorithm, isPlaying } = useStore();

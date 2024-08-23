@@ -1,9 +1,5 @@
 import { StoreState, useStore } from "@/store";
-import { sleep } from "./utils";
-
-const swap = (arr: number[], i: number, j: number) => {
-  [arr[i], arr[j]] = [arr[j], arr[i]];
-};
+import { sleep, swap } from "./utils";
 
 const bubble = async ({
   arr,

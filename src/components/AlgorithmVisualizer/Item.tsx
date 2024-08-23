@@ -33,11 +33,7 @@ export const Item = memo(
           : "auto",
     };
 
-    const animationState = isDone
-      ? "done"
-      : isActive && !isTemp
-      ? "active"
-      : "inactive";
+    const animationState = isDone ? "done" : isActive ? "active" : "inactive";
 
     return (
       <Reorder.Item
@@ -46,9 +42,9 @@ export const Item = memo(
         className={cn(
           "rounded-sm md:rounded grid place-items-center bg-foreground origin-center w-full",
           {
-            "bg-secondary": isActive,
             "bg-primary": isDone,
             "bg-tertiary": isTemp,
+            "bg-secondary": isActive,
             "aspect-square": displayMode === "numbers",
           }
         )}
@@ -57,8 +53,8 @@ export const Item = memo(
           active: {
             y: displayMode === "bars" ? -itemMaxHeight / 2 : -itemMaxHeight / 8,
           },
-          inactive: { y: 0 },
           done: { y: 0 },
+          inactive: { y: 0 },
         }}
         transition={{
           type: "spring",

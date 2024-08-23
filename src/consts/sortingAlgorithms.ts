@@ -24,6 +24,18 @@ export const sortingAlgorithms: Record<Algorithm, AlgorithmDetails> = {
       worst: "O(n²)",
     },
   },
+  insertion: {
+    title: "Insertion Sort",
+    shortDescription:
+      "Efficient for small or nearly sorted datasets, with a best-case time complexity of O(n), but performs poorly on large or randomly ordered datasets due to its O(n²) complexity.",
+    longDescription:
+      "Insertion Sort is a simple and intuitive algorithm that builds the final sorted array one item at a time. It works well on small datasets and is particularly efficient on nearly sorted arrays, where it achieves a best-case time complexity of O(n). The algorithm iterates through the list, taking one element at a time and inserting it into its correct position among the previously sorted elements. However, its O(n²) time complexity in the average and worst cases makes it less suitable for large datasets, especially those that are randomly ordered.",
+    timeComplexity: {
+      best: "O(n)",
+      average: "O(n²)",
+      worst: "O(n²)",
+    },
+  },
   bubble: {
     title: "Bubble Sort",
     shortDescription:

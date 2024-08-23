@@ -5,6 +5,8 @@ import { useSortingAlgorithms } from "@/hooks/useSortingAlgorithms";
 import { useStore } from "@/store";
 import { SpeedSlider } from "./SpeedSlider";
 
+import type { Algorithm } from "@/types";
+
 export const Controls = () => {
   const {
     isPlaying,
@@ -15,13 +17,18 @@ export const Controls = () => {
     doneItems,
     items,
   } = useStore();
-  const { selectionSort, bubbleSort, quickSort } = useSortingAlgorithms();
+  const { selectionSort, bubbleSort, quickSort, insertionSort } =
+    useSortingAlgorithms();
 
   const handlePlayAnimation = async () => {
     setIsPlaying(true);
-    if (activeAlgorithm === "selection") await selectionSort();
-    else if (activeAlgorithm === "bubble") await bubbleSort();
-    else if (activeAlgorithm === "quick") await quickSort();
+    const algorithmMap: Record<Algorithm, () => Promise<void>> = {
+      selection: selectionSort,
+      bubble: bubbleSort,
+      quick: quickSort,
+      insertion: insertionSort,
+    };
+    await algorithmMap[activeAlgorithm]();
     setIsPlaying(false);
   };
 

@@ -19,6 +19,7 @@ https://github.com/user-attachments/assets/c3705203-1f45-4e31-867c-3eb92f1a8f0e
 - **Responsive Design**: The visualizer is fully responsive, offering a seamless experience on both desktop and mobile devices.
 - **Algorithm Visualizations**: Currently supports the following sorting algorithms:
   - Selection Sort
+  - Insertion Sort
   - Bubble Sort
   - Quick Sort
 - **Customizable Settings**: Users can adjust the speed of the visualization, the size of the array, and the display mode (bars or numbers).

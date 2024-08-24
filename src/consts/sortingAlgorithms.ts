@@ -63,9 +63,9 @@ export const sortingAlgorithms: Record<Algorithm, AlgorithmDetails> = {
   merge: {
     title: "Merge Sort",
     shortDescription:
-      "Merge Sort es consistente y estable con rendimiento predecible, ideal para grandes conjuntos de datos, pero requiere memoria adicional.",
+      "Merge Sort is consistent and stable with predictable performance, ideal for large datasets, but requires additional memory.",
     longDescription:
-      "Merge Sort es un algoritmo de ordenamiento estable y confiable, que divide el arreglo en subarreglos más pequeños, los ordena y luego los fusiona. Su complejidad de tiempo es O(n log n) en todos los casos, lo que lo hace adecuado para grandes conjuntos de datos. Sin embargo, su necesidad de memoria adicional para el proceso de fusión puede ser una limitante en entornos con recursos limitados.",
+      "Merge Sort is a stable and reliable sorting algorithm that divides the array into smaller sub-arrays, sorts them, and then merges them back together. Its time complexity is O(n log n) in all cases, making it suitable for large datasets. However, its need for additional memory during the merging process can be a limitation in resource-constrained environments.",
     timeComplexity: {
       best: "O(n log n)",
       average: "O(n log n)",

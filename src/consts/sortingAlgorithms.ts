@@ -27,9 +27,9 @@ export const sortingAlgorithms: Record<Algorithm, AlgorithmDetails> = {
   insertion: {
     title: "Insertion Sort",
     shortDescription:
-      "Efficient for small or nearly sorted datasets, with a best-case time complexity of O(n), but performs poorly on large or randomly ordered datasets due to its O(n²) complexity.",
+      "Efficient for small or nearly sorted datasets, with a best-case O(n) time complexity, but inefficient for larger, random datasets.",
     longDescription:
-      "Insertion Sort is a simple and intuitive algorithm that builds the final sorted array one item at a time. It works well on small datasets and is particularly efficient on nearly sorted arrays, where it achieves a best-case time complexity of O(n). The algorithm iterates through the list, taking one element at a time and inserting it into its correct position among the previously sorted elements. However, its O(n²) time complexity in the average and worst cases makes it less suitable for large datasets, especially those that are randomly ordered.",
+      "Insertion Sort is a simple algorithm that builds a sorted array one element at a time. It’s efficient on small or nearly sorted datasets, achieving a best-case O(n) time complexity. However, its O(n²) complexity in average and worst cases makes it less suitable for large, random datasets. The algorithm iteratively places each item into its proper place within the sorted portion of the array.",
     timeComplexity: {
       best: "O(n)",
       average: "O(n²)",
@@ -63,9 +63,9 @@ export const sortingAlgorithms: Record<Algorithm, AlgorithmDetails> = {
   merge: {
     title: "Merge Sort",
     shortDescription:
-      "Stable and reliable with consistent performance across various datasets, but requires additional memory for merging.",
+      "Merge Sort es consistente y estable con rendimiento predecible, ideal para grandes conjuntos de datos, pero requiere memoria adicional.",
     longDescription:
-      "Merge Sort is a stable algorithm with a consistent O(n log n) time complexity, making it reliable for large datasets. It divides the array into smaller sub-arrays, sorts them, and then merges them back together. While it guarantees consistent performance, the need for additional memory during the merge process can be a drawback in memory-limited environments.",
+      "Merge Sort es un algoritmo de ordenamiento estable y confiable, que divide el arreglo en subarreglos más pequeños, los ordena y luego los fusiona. Su complejidad de tiempo es O(n log n) en todos los casos, lo que lo hace adecuado para grandes conjuntos de datos. Sin embargo, su necesidad de memoria adicional para el proceso de fusión puede ser una limitante en entornos con recursos limitados.",
     timeComplexity: {
       best: "O(n log n)",
       average: "O(n log n)",

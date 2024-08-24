@@ -60,16 +60,16 @@ export const sortingAlgorithms: Record<Algorithm, AlgorithmDetails> = {
       worst: "O(n²)",
     },
   },
-  // merge: {
-  //   title: 'Merge Sort',
-  //   shortDescription:
-  //     'Stable and reliable with consistent performance across various datasets, but requires additional memory for merging.',
-  //   longDescription:
-  //     'Merge Sort is a stable algorithm with a consistent O(n log n) time complexity, making it reliable for large datasets. It divides the array into smaller sub-arrays, sorts them, and then merges them back together. While it guarantees consistent performance, the need for additional memory during the merge process can be a drawback in memory-limited environments.',
-  //   timeComplexity: {
-  //     best: 'O(n log n)',
-  //     average: 'O(n log n)',
-  //     worst: 'O(n log n)',
-  //   },
-  // },
+  merge: {
+    title: "Merge Sort",
+    shortDescription:
+      "Stable and reliable with consistent performance across various datasets, but requires additional memory for merging.",
+    longDescription:
+      "Merge Sort is a stable algorithm with a consistent O(n log n) time complexity, making it reliable for large datasets. It divides the array into smaller sub-arrays, sorts them, and then merges them back together. While it guarantees consistent performance, the need for additional memory during the merge process can be a drawback in memory-limited environments.",
+    timeComplexity: {
+      best: "O(n log n)",
+      average: "O(n log n)",
+      worst: "O(n log n)",
+    },
+  },
 };

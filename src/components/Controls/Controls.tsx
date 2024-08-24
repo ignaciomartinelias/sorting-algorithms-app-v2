@@ -17,7 +17,7 @@ export const Controls = () => {
     doneItems,
     items,
   } = useStore();
-  const { selectionSort, bubbleSort, quickSort, insertionSort } =
+  const { selectionSort, bubbleSort, quickSort, insertionSort, mergeSort } =
     useSortingAlgorithms();
 
   const handlePlayAnimation = async () => {
@@ -27,6 +27,7 @@ export const Controls = () => {
       bubble: bubbleSort,
       quick: quickSort,
       insertion: insertionSort,
+      merge: mergeSort,
     };
     await algorithmMap[activeAlgorithm]();
     setIsPlaying(false);

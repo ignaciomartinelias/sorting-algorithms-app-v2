@@ -2,7 +2,7 @@ import { useStore } from "@/store";
 import { Reorder } from "framer-motion";
 import { Item } from "./Item";
 import { cn } from "@/utils/cn";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const AlgorithmVisualizer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,11 +18,11 @@ export const AlgorithmVisualizer = () => {
     displayMode,
   } = useStore();
 
-  useEffect(() => {
-    if (containerRef.current) {
-      setItemMaxHeight(containerRef.current.getBoundingClientRect().height);
-    }
-  }, []);
+  const containerHeight = containerRef.current?.getBoundingClientRect().height;
+
+  if (containerHeight && containerHeight !== itemMaxHeight) {
+    setItemMaxHeight(containerHeight);
+  }
 
   return (
     <div className="border border-accent/50 lg:border-none lg:bg-accent rounded flex items-center justify-center overflow-hidden h-full p-1 md:p-2 lg:p-3 xl:p-8">

@@ -19,5 +19,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/sorting-algorithms-app-v2/",
 });

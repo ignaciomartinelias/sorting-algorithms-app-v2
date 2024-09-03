@@ -4,7 +4,7 @@ This project is a visualizer for various sorting algorithms. It provides an inte
 
 ## Demo
 
-Check out the live demo of the application [here](https://ignaciomartinelias.github.io/sorting-algorithms-app-v2/).
+Check out the live demo of the application [here](https://sorting-algorithms-app-v2.vercel.app/).
 
 ### Desktop View
 
@@ -54,7 +54,7 @@ pnpm install
 pnpm dev
 ```
 
-4. Open your browser and navigate to http://localhost:5173/sorting-algorithms-app-v2/ to view the application.
+4. Open your browser and navigate to http://localhost:5173/ to view the application.
 
 ## Usage
 

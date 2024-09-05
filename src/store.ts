@@ -51,7 +51,12 @@ export const useStore = create<StoreState>((set) => ({
   setIsMobile: (isMobile) => set({ isMobile }),
   setIsPlaying: (isPlaying) => set({ isPlaying }),
   setDisplayMode: (displayMode) => set({ displayMode }),
-  setActiveAlgorithm: (algorithm) => set({ activeAlgorithm: algorithm }),
+  setActiveAlgorithm: (algorithm) =>
+    set((state) => ({
+      activeAlgorithm: algorithm,
+      items: generateUniqueRandomItems(state.size),
+      arrayId: state.arrayId + 1,
+    })),
   setSize: (size) =>
     set((state) => ({
       size,

@@ -18,7 +18,7 @@ const merge = async (
 ): Promise<number[] | null> => {
   const { setItems, setActiveItems, speedRef, abortRef, setTempItems } = config;
 
-  let sortedArray: number[] = [];
+  const sortedArray: number[] = [];
   setActiveItems([...leftArr, ...rightArr]);
   await sleep(speedRef.current);
 

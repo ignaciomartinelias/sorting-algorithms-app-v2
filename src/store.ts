@@ -56,6 +56,9 @@ export const useStore = create<StoreState>((set) => ({
       activeAlgorithm: algorithm,
       items: generateUniqueRandomItems(state.size),
       arrayId: state.arrayId + 1,
+      activeItems: [],
+      tempItems: [],
+      doneItems: [],
     })),
   setSize: (size) =>
     set((state) => ({

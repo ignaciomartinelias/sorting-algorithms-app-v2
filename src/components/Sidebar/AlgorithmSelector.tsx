@@ -11,9 +11,9 @@ export const AlgorithmSelector = () => {
   const { activeAlgorithm, setActiveAlgorithm, isPlaying } = useStore();
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <Title title="Sorting Algorithms" />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         {algorithms.map((algorithm) => (
           <Button
             key={algorithm}

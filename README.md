@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/c3705203-1f45-4e31-867c-3eb92f1a8f0e
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/sorting-visualizer.git
+git clone https://github.com/ignaciomartinelias/sorting-algorithms-app-v2.git
 cd sorting-visualizer
 ```
 
@@ -65,9 +65,6 @@ pnpm dev
 ## Pending Features
 
 - **Onboarding Process**: Introduce an onboarding process to guide first-time users through the application.
-- **Additional Algorithms**:
-  - Implement Merge Sort.
-  - Add variations of Quick Sort.
 
 ## Contributing
 
